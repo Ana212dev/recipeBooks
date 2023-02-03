@@ -34,13 +34,13 @@ defaultLayout:'main', //apply layout all of body elements
 app.set('view engine', '.hbs')
 
 //session middleware
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false, 
-    saveUninitialized:true,
-    cookie:{secure:true} 
-})) 
-
+app.use(
+    session({
+        secret: 'keyboard cat',
+        resave: false, 
+        saveUninitialized:false,  
+    })
+) 
 
 //passport middleware 
 app.use(passport.initialize())
