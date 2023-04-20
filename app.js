@@ -33,12 +33,11 @@ defaultLayout:'main', //apply layout all of body elements
 )
 app.set('view engine', '.hbs')
 
-//session middleware
-app.use(
-    session({
+//Session middleware
+app.use(session({
         secret: 'keyboard cat',
         resave: false, 
-        saveUninitialized:false,  
+        saveUninitialized: false,  
     })
 ) 
 
