@@ -1,24 +1,23 @@
 const mongoose = require('mongoose')
 
-const UserSchema = new mongoose.Schema({
-    googleId:{
+const StorySchema = new mongoose.Schema({
+    title:{
+        type:String,
+        required: true
+        trim: true
+    },
+    body:{
         type:String,
         required: true
     },
-    displayName:{
-        type:String,
-        required: true
+    status: {
+        type: String,
+        default: 'public',
+        enum: ['public, 'private]
     },
-    firstName:{
-        type:String,
-        required: true
-    },
-    lastName:{
-        type:String,
-        required: true
-    },
-    image: {
-        type:String,
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     },
     createdAt:{
         type: Date,
@@ -26,4 +25,4 @@ const UserSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model('Story', StorySchema)
