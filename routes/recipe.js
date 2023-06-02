@@ -54,7 +54,7 @@ router.get('/edit/:id', ensureAuth, async(req, res) => {
         res.redirect('/recipe')
     } else{
         res.render ('recipe/edit', {
-            story,
+            recipe,
         })
         
     }
