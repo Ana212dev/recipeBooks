@@ -3,6 +3,8 @@ const router = express.Router()
 const { ensureAuth} = require('../middleware/auth')
 
 const Recipe = require('../models/Recipe')
+
+
 // @ description Show the add recipes page
 // @ route GET /recipe/add 
 router.get('/add', ensureAuth, (req,res) => {
@@ -22,5 +24,22 @@ router.post('/', ensureAuth, async (req,res) => {
     }
 })
 
+// @ description Show the all recipes
+// @ route GET /recipe/add 
+router.get('/', ensureAuth, async (req, res) => {
+    try {
+        const recipe = await Recipe.find({status: 'public'})
+        .populate('user')
+        .sort ({ createdAt: 'desc' })
+        .lean()
+
+    res.render('recipe/index', {
+            recipe,
+        })
+    } catch (err) {
+        console.error(err)
+        res.render('error/500')
+    }
+})
 
 module.exports = router
