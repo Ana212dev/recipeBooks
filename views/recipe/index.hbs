@@ -1,0 +1,28 @@
+<h1>Recipes</h1>
+<div class = 'row'>
+    {{#each recipe}}
+        <div class= "col s12 m4">
+            <div class = "card">
+                <div class = "card-image">
+                    {{!--todo: editIcon --}}
+                </div>
+                <div class="card-content.center-align">
+                    <h5> {{title}}</h5>
+                    <p>{{stripTags (truncate body 150)}}</p>
+                    <br>
+                    <div class="chip">
+                        <img src = "{{user.image}}" alt "">
+                        <a href="/recipe/user/{{user._id}}">{{user.displayName}}
+                        </a>
+                    </div>
+                </div>
+                <div class="card-action center-align">
+                    <a href ="/recipe/{{_id}}" 
+                    class="btn grey">Read More</a>
+                </div>
+            </di>
+        </div>
+    {{else}}
+        <p>No recipes to display</p>
+    {{/each}}
+</div>
