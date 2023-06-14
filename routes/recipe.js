@@ -30,12 +30,11 @@ router.get('/', ensureAuth, async (req, res) => {
     try {
         const recipe = await Recipe.find({status: 'public'})
         .populate('user')
-        .sort ({ createdAt: 'desc' })
+        .sort({createdAt: 'desc'})
         .lean()
-
     res.render('recipe/index', {
-            recipe,
-        })
+        recipe
+    })
     } catch (err) {
         console.error(err)
         res.render('error/500')
