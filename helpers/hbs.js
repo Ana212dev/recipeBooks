@@ -16,6 +16,16 @@ formatDate: function (date, format){
 },
     stripTags: function (input) {
         return input.replace(/<(?:.|\n)*?>/gm, '')
-    
-},
+    },
+    editIcon: function (recipeUser, loggedUser, recipeId, floating = true) {
+        if (recipeUser._id.toString() == loggedUser._id.toString()) {
+          if (floating) {
+            return `<a href="/recipe/edit/${recipeId}" class="btn-floating halfway-fab blue"><i class="fas fa-edit fa-small"></i></a>`
+          } else {
+            return `<a href="/recipe/edit/${recipeId}"><i class="fas fa-edit"></i></a>`
+          }
+        } else {
+          return ''
+        }
+    },
 }
