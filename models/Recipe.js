@@ -18,7 +18,7 @@ const RecipeSchema = new mongoose.Schema({
       user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        //!Change: this field should be required because the app will break if the user is not present.
+        //!Change: this field should be required because the app will break if the user is not present from app.js
         required: true,
       },
       createdAt: {
