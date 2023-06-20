@@ -41,4 +41,23 @@ router.get('/', ensureAuth, async (req, res) => {
     }
 })
 
+// @ description Show page to edit 
+// @ route GET /recipe/edit/:id
+router.get('/edit/:id', ensureAuth, async(req, res) => {
+    const recipe = await Recipe.findOne({
+        _id: req.params.id
+    }).lean()
+    if(!recipe){
+        return res.render('error/404')
+    }
+    if (recipe.user != req.user.id){
+        res.redirect('/recipe')
+    } else{
+        res.render ('recipe/edit', {
+            story,
+        })
+        
+    }
+})
+
 module.exports = router
