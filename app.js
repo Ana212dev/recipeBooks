@@ -5,4 +5,3 @@ const dotenv = required('dotenv')
 dotenv.config({ path: './config/config.env'})
 const app =express()
 
-app.listen()
