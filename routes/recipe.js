@@ -60,4 +60,24 @@ router.get('/edit/:id', ensureAuth, async(req, res) => {
     }
 })
 
+// @ description Update recipes
+// @ route PUT /recipe/:id
+router.put('/:id', ensureAuth, async (req,res) => {
+    let recipe = await Recipe.findById(req.params.id).lean()
+    if (!recipe){
+        return res.render('error/404')
+    }
+
+
+    if(recipe.user != req.user.id){
+        res.redirect('/recipe')
+    }else {
+        recipe = await Recipe.findOneAndUpdate({_id: req.params.id }, req.body,{
+            new: true,
+            runValidators: true
+        })
+        res.redirect('/dashboard')
+    }
+})
+
 module.exports = router
